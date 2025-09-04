@@ -15,19 +15,10 @@ from passlib.context import CryptContext
 app = FastAPI()
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-# CORS origins - more restrictive for production
-origins = [
-    "http://localhost:54321",
-    "http://localhost:8000",
-    "http://localhost",
-    "http://127.0.0.1",
-    "https://your-flutter-app.onrender.com",  # Replace with your actual Flutter app URL
-    "https://your-admin-app.onrender.com",    # Replace with your actual admin app URL
-]
-
+# CORS origins - allow all for development
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],  # Allow all origins for development
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
