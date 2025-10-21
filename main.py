@@ -95,7 +95,8 @@ class Station(Base):
     num_grounds = Column(Integer, nullable=False)
 
 # Create all tables after defining all models
-Base.metadata.create_all(bind=engine)
+# Note: Tables are created by init_db.py script or on first request
+# Base.metadata.create_all(bind=engine)  # Commented out to prevent deployment issues
 
 # ---------- SCHEMAS ----------
 class UserCreate(BaseModel):
