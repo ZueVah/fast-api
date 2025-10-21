@@ -13,7 +13,7 @@ from db import Base, engine, SessionLocal
 from passlib.context import CryptContext
 
 app = FastAPI()
-pwd_context = CryptContext(schemes=["bcrypt_sha256", "bcrypt"],deprecated="auto")
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 # CORS origins - allow all for development
 app.add_middleware(
