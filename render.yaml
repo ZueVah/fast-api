@@ -7,6 +7,7 @@ services:
     startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: DATABASE_URL
-        value: postgresql://postgres.fsgiweyghpewzsibaeuf:ZooVah%401997@aws-1-us-east-2.pooler.supabase.com:6543/postgres
+        value: postgresql://smart:BhJX1qIjA4ESsVYSNjCBAXx3Vd82fuZH@dpg-d3s0p4hr0fns73e574bg-a/smart_m5w4
       - key: PYTHON_VERSION
         value: 3.11.0
+
