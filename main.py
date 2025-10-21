@@ -95,8 +95,7 @@ class Station(Base):
     num_grounds = Column(Integer, nullable=False)
 
 # Create all tables after defining all models
-# Note: Tables are created by init_db.py script or on first request
-# Base.metadata.create_all(bind=engine)  # Commented out to prevent deployment issues
+Base.metadata.create_all(bind=engine)
 
 # ---------- SCHEMAS ----------
 class UserCreate(BaseModel):
@@ -556,11 +555,22 @@ def get_security_answers_by_user(user_id: int, db: DBSession = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Answers not found")
     return answers
 
-# Startup event handler removed - database initialization is now handled by init_db.py during build
-# @app.on_event("startup")
-# def insert_default_questions():
-#     # This function has been moved to init_db.py to avoid deployment issues
-#     pass
+@app.on_event("startup")
+def insert_default_questions():
+    default_qs = [
+        "What is the name of your first pet?",
+        "What was the model of your first car?",
+        "In what city were you born?",
+        "What is your mother's maiden name?",
+        "What is the name of the street you grew up?",
+        "What is the name of your primary school?"
+    ]
+    db = SessionLocal()
+    for q in default_qs:
+        if not db.query(SecurityQuestion).filter(SecurityQuestion.question == q).first():
+            db.add(SecurityQuestion(question=q))
+    db.commit()
+    db.close()
 
 @app.post("/stations/")
 def create_station(station: StationSchema, db: DBSession = Depends(get_db)):
