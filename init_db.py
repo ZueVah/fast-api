@@ -18,16 +18,8 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 def init_database():
     """Initialize the database with tables and default data"""
     try:
-        # Create engine and session with SSL configuration
-        engine = create_engine(
-            DATABASE_URL,
-            pool_pre_ping=True,
-            pool_recycle=300,
-            connect_args={
-                "connect_timeout": 10,
-                "application_name": "smart_license_api_init"
-            }
-        )
+        # Create engine and session
+        engine = create_engine(DATABASE_URL)
         SessionLocal = sessionmaker(bind=engine)
         
         # Create all tables
