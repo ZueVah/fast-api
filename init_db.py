@@ -25,8 +25,7 @@ def init_database():
             pool_recycle=300,
             connect_args={
                 "connect_timeout": 10,
-                "application_name": "smart_license_api_init",
-                "sslmode": "require"
+                "application_name": "smart_license_api_init"
             }
         )
         SessionLocal = sessionmaker(bind=engine)
