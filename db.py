@@ -36,7 +36,8 @@ engine = create_engine(
     pool_recycle=300,
     connect_args={
         "connect_timeout": 10,
-        "application_name": "smart_license_api"
+        "application_name": "smart_license_api",
+        "sslmode": "require"
     }
 )
 SessionLocal = sessionmaker(bind=engine)
