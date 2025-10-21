@@ -3,10 +3,10 @@ services:
     name: smart-license-api
     env: python
     plan: free
-    buildCommand: pip install -r requirements.txt && python init_db.py
+    buildCommand: pip install -r requirements.txt
     startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: DATABASE_URL
-        value: postgresql://postgres.gnkbepunywvseltrlopm:ZooVah%401997@aws-1-us-east-2.pooler.supabase.com:6543/postgres?sslmode=require
+        value: postgresql://postgres.fsgiweyghpewzsibaeuf:ZooVah%401997@aws-1-us-east-2.pooler.supabase.com:6543/postgres
       - key: PYTHON_VERSION
         value: 3.11.0
