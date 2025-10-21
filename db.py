@@ -30,7 +30,15 @@ if not DATABASE_URL:
         f"{DB_CONFIG['host']}:{DB_CONFIG['port']}/{DB_CONFIG['dbname']}"
     )
 
-engine = create_engine(DATABASE_URL)
+engine = create_engine(
+    DATABASE_URL,
+    pool_pre_ping=True,
+    pool_recycle=300,
+    connect_args={
+        "connect_timeout": 10,
+        "application_name": "smart_license_api"
+    }
+)
 SessionLocal = sessionmaker(bind=engine)
 Base = declarative_base()
 
