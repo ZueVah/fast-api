@@ -7,8 +7,9 @@ services:
     startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: DATABASE_URL
-        value: postgresql://postgres.fsgiweyghpewzsibaeuf:ZooVah%401997@aws-1-us-east-2.pooler.supabase.com:5432/postgres?sslmode=require
+        value: postgresql://postgres.fsgiweyghpewzsibaeuf:ZooVah%401997@aws-1-us-east-2.pooler.supabase.com:5432/postgres?sslmode
       - key: PYTHON_VERSION
         value: 3.11.0
+
 
 
